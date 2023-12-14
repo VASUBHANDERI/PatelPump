@@ -389,7 +389,7 @@ export default function App() {
       <ScrollView>
         <View
           style={{
-            height: height * 0.95,
+            height: height * 0.96,
             paddingTop: Constants.statusBarHeight * 0.5,
           }}
         >
@@ -476,23 +476,18 @@ export default function App() {
                   source={require("./assets/luxa.org-opacity-changed-submersible-pump-removebg-preview.png")}
                   style={styles.background}
                   resizeMode="center"
+                  detailBoxContainer
                 >
-                  <View style={styles.headingContainer}>
-                    <View style={styles.heading1}>
-                      <Text style={styles.headingText}>વિગત</Text>
-                    </View>
-                    <View style={styles.heading2}>
-                      <Text style={styles.headingText}>નંગ</Text>
-                    </View>
-                    <View style={styles.heading2}>
-                      <Text style={styles.headingText}>ભાવ</Text>
-                    </View>
-                    <View style={styles.heading3}>
-                      <Text style={styles.headingText}>રૂપિયા</Text>
-                    </View>
-                  </View>
+                  {/* <View style={styles.headingContainer}>
+                    
+                    
+                    
+                  </View> */}
                   <View style={styles.detailContainer}>
                     <View style={styles.detailFlex1}>
+                      <View style={styles.heading}>
+                        <Text style={styles.headingText}>વિગત</Text>
+                      </View>
                       <View style={styles.detailBoxContainer}>
                         <View style={styles.detailBox}>
                           <View style={styles.detailBox2}>
@@ -814,6 +809,9 @@ export default function App() {
                       </View>
                     </View>
                     <View style={styles.detailFlex2}>
+                      <View style={styles.heading}>
+                        <Text style={styles.headingText}>નંગ</Text>
+                      </View>
                       <View style={styles.cell}>
                         <TextInput
                           keyboardType="number-pad"
@@ -998,6 +996,9 @@ export default function App() {
                       </View>
                     </View>
                     <View style={styles.detailFlex2}>
+                      <View style={styles.heading}>
+                        <Text style={styles.headingText}>ભાવ</Text>
+                      </View>
                       <View style={styles.cell}>
                         <TextInput
                           keyboardType="number-pad"
@@ -1182,6 +1183,9 @@ export default function App() {
                       </View>
                     </View>
                     <View style={styles.detailFlex3}>
+                      <View style={styles.heading}>
+                        <Text style={styles.headingText}>રૂપિયા</Text>
+                      </View>
                       <View style={styles.cell}>
                         {ct1 > 0 ? (
                           <Text style={styles.ft}>{ct1}</Text>
@@ -1568,6 +1572,7 @@ export default function App() {
               flexDirection: "row",
               // justifyContent: "flex-end",
               marginVertical: Constants.statusBarHeight * 0.4,
+              marginTop: Constants.statusBarHeight * 0.3,
               alignItems: "center",
             }}
           >
@@ -1642,11 +1647,11 @@ const styles = ScaledSheet.create({
   },
   mainView3: {
     flex: 9,
-    borderColor: "#191970",
-    borderWidth: scale(1),
+    // borderColor: "#191970",
+    // borderWidth: scale(1),
     margin: scale(1),
-    borderRadius: scale(10),
-    paddingBottom: verticalScale(3),
+    // borderRadius: scale(10),
+    // paddingBottom: verticalScale(3),
   },
   mainView4: {
     flex: 1,
@@ -1677,19 +1682,9 @@ const styles = ScaledSheet.create({
     paddingVertical: verticalScale(1),
     marginBottom: verticalScale(-1),
   },
-  fontMedium: {
-    fontSize: scale(12),
-    fontFamily: "MediumGujarati",
-    color: "#191970",
-  },
   ownerName: {
     fontSize: scale(11),
     fontFamily: "MediumGujarati",
-    color: "#191970",
-  },
-  fontRegular: {
-    fontSize: scale(12),
-    fontFamily: "RegularGujarati",
     color: "#191970",
   },
   ownerNumber: {
@@ -1702,22 +1697,6 @@ const styles = ScaledSheet.create({
     fontFamily: "ExtraBoldGujarati",
     color: "#191970",
     marginTop: scale(2),
-  },
-  fontTitle: {
-    fontSize: scale(20),
-    fontFamily: "BoldGujarati",
-    color: "#191970",
-  },
-  fontBlack: {
-    fontSize: scale(20),
-    fontFamily: "BlackGujarati",
-    color: "#191970",
-  },
-  fontLight: {
-    fontSize: scale(10),
-    fontFamily: "LightGujarati",
-    color: "#191970",
-    marginVertical: verticalScale(-5),
   },
   ownerNative: {
     fontSize: scale(9),
@@ -1798,51 +1777,20 @@ const styles = ScaledSheet.create({
     alignContent: "flex-end",
     paddingVertical: 0,
   },
-  number: {
-    borderBottomColor: "#191970",
-    // borderBottomWidth: 2,
-    flex: 1,
-    color: "#191970",
-    fontFamily: "MediumGujarati",
-    fontSize: scale(11),
-    marginRight: scale(3),
-    marginLeft: scale(3),
-    textAlignVertical: "bottom",
-    marginBottom: verticalScale(2),
-    alignContent: "flex-end",
-    paddingVertical: 0,
-    alignSelf: "center",
-  },
   headingContainer: {
     flexDirection: "row",
     flex: 1,
   },
   detailContainer: {
     flexDirection: "row",
-    flex: 18,
+    flex: 19,
   },
   totalContainer: {
     flexDirection: "row",
     flex: 1,
   },
-  heading1: {
-    flex: 11,
-    borderColor: "#191970",
-    borderWidth: scale(1),
-    backgroundColor: "#191970",
-    borderRadius: scale(5),
-    justifyContent: "center",
-  },
-  heading2: {
-    flex: 2,
-    borderColor: "#191970",
-    borderWidth: scale(1),
-    backgroundColor: "#191970",
-    borderRadius: scale(5),
-    justifyContent: "center",
-  },
-  heading3: {
-    flex: 3,
+  heading: {
+    flex: 1,
     borderColor: "#191970",
     borderWidth: scale(1),
     backgroundColor: "#191970",
@@ -1851,6 +1799,8 @@ const styles = ScaledSheet.create({
   },
   detailFlex1: {
     flex: 11,
+    // marginRight:scale(-1)
+    // marginRight: -1,
   },
   detailFlex2: {
     flex: 2,
@@ -1872,7 +1822,7 @@ const styles = ScaledSheet.create({
   },
   detailBox2: {
     justifyContent: "center",
-    marginRight: scale(1),
+    paddingRight: scale(1),
   },
   detailBox3: {
     flex: 1,
@@ -1907,7 +1857,7 @@ const styles = ScaledSheet.create({
     borderRadius: scale(5),
   },
   headingText: {
-    fontSize: scale(15),
+    fontSize: scale(14),
     fontFamily: "RegularGujarati",
     color: "#ffff",
     alignSelf: "center",
@@ -1951,7 +1901,7 @@ const styles = ScaledSheet.create({
 
     fontFamily: "BoldGujarati",
     color: "#000",
-    marginLeft: scale(1),
+    paddingLeft: scale(1),
     // marginTop:4,
     // borderColor:'red',
     // borderWidth:1,
