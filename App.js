@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   ToastAndroid,
+  StatusBar,
 } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
@@ -367,7 +368,6 @@ export default function App() {
     // make sure path is correct
     ExtraBoldGujarati: require("./assets/fonts/NotoSerifGujarati-ExtraBold.ttf"),
     RegularGujarati: require("./assets/fonts/NotoSerifGujarati-Regular.ttf"),
-    BlackGujarati: require("./assets/fonts/NotoSerifGujarati-Black.ttf"),
     BoldGujarati: require("./assets/fonts/NotoSerifGujarati-Bold.ttf"),
     MediumGujarati: require("./assets/fonts/NotoSerifGujarati-Medium.ttf"),
     LightGujarati: require("./assets/fonts/NotoSerifGujarati-Light.ttf"),
@@ -385,12 +385,24 @@ export default function App() {
     return;
   }
   return (
-    <View style={{ flex: 1, height: height }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "#fff",
+      }}
+    >
+      <StatusBar
+        backgroundColor="#fff"
+        barStyle="dark-content"
+        hidden={false}
+        translucent={true}
+      />
       <ScrollView>
         <View
           style={{
             height: height * 0.96,
             paddingTop: Constants.statusBarHeight * 0.5,
+            flex: 1,
           }}
         >
           <ViewShot
@@ -1611,6 +1623,7 @@ export default function App() {
           </View>
         </View>
       </ScrollView>
+      
     </View>
   );
 }
@@ -1626,6 +1639,7 @@ const styles = ScaledSheet.create({
     borderColor: "#191970",
     borderWidth: scale(3),
     borderRadius: scale(15),
+    marginTop: Constants.statusBarHeight * 0.7,
   },
   background: {
     flex: 1,
