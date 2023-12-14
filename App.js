@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -11,14 +11,22 @@ import {
   Dimensions,
   TouchableOpacity,
   ImageBackground,
+  ToastAndroid,
 } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import Constants from "expo-constants";
 import { useFonts } from "expo-font";
 import ViewShot from "react-native-view-shot";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { ScaledSheet } from "react-native-size-matters";
+import * as MediaLibrary from "expo-media-library";
+import * as ImagePicker from "expo-image-picker";
+
 
 Text.defaultProps = {
   ...(Text.defaultProps || {}),
@@ -272,9 +280,24 @@ export default function App() {
     setT18(0);
   };
 
+  const [backgroundColor, setBackgroundColor] = useState("#19197050");
   const viewShotRef = useRef(null);
 
-  const captureView = async () => {
+  useEffect(() => {
+    requestPermissions();
+  }, []);
+
+  const requestPermissions = async () => {
+    if (Platform.OS !== "web") {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        alert("Permission to access media library denied!");
+      }
+    }
+  };
+
+  const captureViewAndShare = async () => {
     if (viewShotRef.current) {
       try {
         const uri = await viewShotRef.current.capture();
@@ -293,6 +316,52 @@ export default function App() {
     }
 
     await Sharing.shareAsync(uri);
+  };
+
+  const captureViewAndSave = async () => {
+    if (viewShotRef.current) {
+      try {
+        // Capture the view and get the image URI
+        const uri = await viewShotRef.current.capture();
+
+        // Save to gallery
+        await saveToGallery(uri, "Patel Pump"); // Change 'MyAppImages' to your desired album name
+      } catch (error) {
+        console.error("Capture failed:", error);
+      }
+    }
+  };
+
+  const saveToGallery = async (uri, albumName) => {
+    try {
+      if (!uri || typeof uri !== "string") {
+        console.error("Invalid or missing URI");
+        return;
+      }
+
+      const asset = await MediaLibrary.createAssetAsync(uri, {
+        album: albumName,
+      });
+
+      if (asset) {
+        console.log("Image saved to gallery successfully in album:", albumName);
+        ShowMessage();
+
+        // Send a notification after the image is saved
+
+        // Optionally, you can display a success message or perform additional actions here
+      } else {
+        console.error("Failed to save image to gallery");
+      }
+    } catch (error) {
+      console.error("Error while saving image to gallery:", error);
+    }
+  };
+
+  const ShowMessage = () => {
+    ToastAndroid.show("Image Saved to Gallery!", ToastAndroid.SHORT, {
+      backgroundColor:backgroundColor,
+    });
   };
 
   const [loaded] = useFonts({
@@ -1503,12 +1572,22 @@ export default function App() {
             </View>
             <TouchableOpacity
               onPress={reset}
-              style={{ marginRight: Constants.statusBarHeight }}
+              style={{ marginRight: Constants.statusBarHeight * 0.5 }}
             >
               <Ionicons name="reload-circle-sharp" size={32} color="#191970" />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={captureView}
+              onPress={captureViewAndSave}
+              style={{ marginRight: Constants.statusBarHeight * 0.5 }}
+            >
+              <MaterialCommunityIcons
+                name="download-circle"
+                size={32}
+                color="#191970"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={captureViewAndShare}
               style={{ marginRight: Constants.statusBarHeight }}
             >
               <FontAwesome name="send" size={28} color="#191970" />
