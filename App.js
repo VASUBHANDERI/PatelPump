@@ -23,7 +23,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { ScaledSheet } from "react-native-size-matters";
+import { ScaledSheet,scale, verticalScale  } from "react-native-size-matters";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
 
@@ -458,7 +458,7 @@ export default function App() {
                     />
                   </View>
                   <View style={styles.subSubView2_2_2}>
-                    <Text style={styles.shree}>
+                    <Text style={styles.date}>
                       તા.{day} / {month} / {year}
                     </Text>
                   </View>
@@ -1564,7 +1564,7 @@ export default function App() {
               marginVertical: Constants.statusBarHeight * 0.4,
             }}
           >
-            <View style={styles.copyRights}>
+            <View style={styles.copyRightsView}>
               <Text style={styles.copyRights}>
                 Copyright @ 2023 Patel Pump Agency
               </Text>
@@ -1574,7 +1574,7 @@ export default function App() {
               onPress={reset}
               style={{ marginRight: Constants.statusBarHeight * 0.5 }}
             >
-              <Ionicons name="reload-circle-sharp" size={32} color="#191970" />
+              <Ionicons name="reload-circle-sharp" size={scale(32)} color="#191970" />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={captureViewAndSave}
@@ -1582,7 +1582,7 @@ export default function App() {
             >
               <MaterialCommunityIcons
                 name="download-circle"
-                size={32}
+                size={scale(32)}
                 color="#191970"
               />
             </TouchableOpacity>
@@ -1590,7 +1590,7 @@ export default function App() {
               onPress={captureViewAndShare}
               style={{ marginRight: Constants.statusBarHeight }}
             >
-              <FontAwesome name="send" size={28} color="#191970" />
+              <FontAwesome name="send" size={scale(28)} color="#191970" />
             </TouchableOpacity>
           </View>
         </View>
@@ -1608,8 +1608,8 @@ const styles = ScaledSheet.create({
     marginVertical: Constants.statusBarHeight * 0.5,
     marginHorizontal: Constants.statusBarHeight * 0.2,
     borderColor: "#191970",
-    borderWidth: 3,
-    borderRadius: 15,
+    borderWidth: scale(3),
+    borderRadius: scale(15),
   },
   background: {
     flex: 1,
@@ -1617,33 +1617,33 @@ const styles = ScaledSheet.create({
   mainView1: {
     flex: 2,
     borderColor: "#191970",
-    borderWidth: 1,
-    margin: 2,
-    borderRadius: 10,
+    borderWidth: scale(1),
+    margin: scale(2),
+    borderRadius: scale(10),
   },
   mainView2: {
     flex: 1,
     borderColor: "#191970",
-    borderWidth: 1,
-    margin: 1,
-    borderRadius: 10,
-    paddingBottom: 3,
+    borderWidth: scale(1),
+    margin: scale(1),
+    borderRadius: scale(10),
+    paddingBottom: verticalScale(3),
   },
   mainView3: {
     flex: 9,
     borderColor: "#191970",
-    borderWidth: 1,
-    margin: 1,
-    borderRadius: 10,
-    paddingBottom: 3,
+    borderWidth: scale(1),
+    margin: scale(1),
+    borderRadius: scale(10),
+    paddingBottom: verticalScale(3),
   },
   mainView4: {
     flex: 1,
     borderColor: "#191970",
-    borderWidth: 1,
-    margin: 1,
-    borderRadius: 10,
-    paddingBottom: 3,
+    borderWidth: scale(1),
+    margin: scale(1),
+    borderRadius: scale(10),
+    paddingBottom: verticalScale(3),
   },
   subView1_1: {
     flex: 2,
@@ -1653,118 +1653,114 @@ const styles = ScaledSheet.create({
     flex: 2,
     flexDirection: "row",
     alignItems: "flex-end",
-    paddingHorizontal: 5,
+    paddingHorizontal: scale(5),
   },
   subView1_3: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 5,
-    borderBottomRightRadius: 8,
-    borderBottomLeftRadius: 8,
+    paddingHorizontal: scale(5),
+    borderBottomRightRadius: scale(8),
+    borderBottomLeftRadius: scale(8),
     backgroundColor: "#191970",
   },
   fontMedium: {
-    fontSize: 12,
+    fontSize: scale(12),
     fontFamily: "MediumGujarati",
     color: "#191970",
   },
   fontRegular: {
-    fontSize: 12,
+    fontSize: scale(12),
     fontFamily: "RegularGujarati",
     color: "#191970",
   },
   fontExtraBold: {
-    fontSize: 32,
+    fontSize: scale(30),
     fontFamily: "ExtraBoldGujarati",
     color: "#191970",
-    marginTop: 2,
+    marginTop: scale(2),
   },
   fontTitle: {
-    fontSize: 20,
+    fontSize: scale(20),
     fontFamily: "BoldGujarati",
     color: "#191970",
   },
   fontBlack: {
-    fontSize: 20,
+    fontSize: scale(20),
     fontFamily: "BlackGujarati",
     color: "#191970",
   },
   fontLight: {
-    fontSize: 10,
+    fontSize: scale(10),
     fontFamily: "LightGujarati",
     color: "#191970",
-    marginVertical: -5,
+    marginVertical: verticalScale(-5),
   },
   fontAddress: {
-    fontSize: 12, //12
+    fontSize: scale(10.5), //12
     fontFamily: "LightGujarati",
     color: "#ffff",
-    // marginVertical: -5,
   },
   subView2_1: {
     alignSelf: "center",
     backgroundColor: "#191970",
     justifyContent: "center",
-    padding: 2,
-    borderBottomEndRadius: 10,
-    borderBottomLeftRadius: 10,
+    padding: scale(2),
+    borderBottomEndRadius: scale(10),
+    borderBottomLeftRadius: scale(10),
   },
   whiteTitle: {
-    fontSize: 14,
+    fontSize: scale(14),
     fontFamily: "BoldGujarati",
     color: "#fff",
-    marginHorizontal: 5,
-    marginBottom: -2,
+    marginHorizontal: scale(5),
+    marginBottom: scale(-2),
   },
   subView2_2: {
     flexDirection: "row",
     flex: 1,
-    marginTop: 2,
+    marginTop: verticalScale(2),
   },
   subSubView2_2_1: {
     flexDirection: "row",
     flex: 5,
 
     alignItems: "center",
-    paddingTop: 3,
+    paddingTop: verticalScale(3),
   },
   subSubView2_2_2: {
     flexDirection: "row",
     flex: 2,
     alignItems: "center",
-    paddingTop: 3,
+    paddingTop: verticalScale(3),
   },
   shree: {
-    fontSize: 13,
+    fontSize: scale(12),
     fontFamily: "MediumGujarati",
     color: "#191970",
-    // marginBottom: 4,
   },
   name: {
     borderBottomColor: "#191970",
-    borderBottomWidth: 2,
+    borderBottomWidth: scale(2),
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 13,
-    marginRight: 3,
-    marginLeft: 3,
+    fontSize: scale(12),
+    marginHorizontal: scale(3),
     textAlignVertical: "bottom",
-    marginBottom: 1,
+    marginBottom: verticalScale(0.5),
+    paddingBottom:verticalScale(1.3),
     alignContent: "flex-end",
-    paddingVertical: 0,
   },
   suchna: {
     borderBottomColor: "#191970",
-    // borderBottomWidth: 2,
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 8,
-    marginRight: 3,
-    marginLeft: 3,
+    fontSize: scale(8),
+    marginRight: scale(3),
+    marginLeft: scale(3),
     textAlignVertical: "bottom",
-    marginBottom: 2,
+    marginBottom: verticalScale(0),
     alignContent: "flex-end",
     paddingVertical: 0,
   },
@@ -1774,11 +1770,11 @@ const styles = ScaledSheet.create({
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 11,
-    marginRight: 3,
-    marginLeft: 3,
+    fontSize: scale(11),
+    marginRight: scale(3),
+    marginLeft: scale(3),
     textAlignVertical: "bottom",
-    marginBottom: 2,
+    marginBottom: verticalScale(2),
     alignContent: "flex-end",
     paddingVertical: 0,
     alignSelf: "center",
@@ -1798,25 +1794,25 @@ const styles = ScaledSheet.create({
   heading1: {
     flex: 11,
     borderColor: "#191970",
-    borderWidth: 1,
+    borderWidth: scale(1),
     backgroundColor: "#191970",
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: "center",
   },
   heading2: {
     flex: 2,
     borderColor: "#191970",
-    borderWidth: 1,
+    borderWidth: scale(1),
     backgroundColor: "#191970",
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: "center",
   },
   heading3: {
     flex: 3,
     borderColor: "#191970",
-    borderWidth: 1,
+    borderWidth: scale(1),
     backgroundColor: "#191970",
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: "center",
   },
   detailFlex1: {
@@ -1833,8 +1829,8 @@ const styles = ScaledSheet.create({
     flexDirection: "row",
     flex: 1,
     borderColor: "#191970",
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: scale(1),
+    borderRadius: scale(5),
   },
   detailBox1: {
     flex: 2,
@@ -1842,7 +1838,7 @@ const styles = ScaledSheet.create({
   },
   detailBox2: {
     justifyContent: "center",
-    marginRight: 1,
+    marginRight: scale(1),
   },
   detailBox3: {
     flex: 1,
@@ -1851,39 +1847,39 @@ const styles = ScaledSheet.create({
   detailBox: {
     flexDirection: "row",
     flex: 7,
-    paddingLeft: 3,
+    paddingLeft: scale(3),
     // justifyContent:'center'
   },
 
   cell: {
     flex: 1,
     borderColor: "#191970",
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: scale(1),
+    borderRadius: scale(5),
   },
 
   cell2: {
     flex: 2,
     borderColor: "#191970",
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: scale(1),
+    borderRadius: scale(5),
     // marginLeft:1
     backgroundColor: "#191970",
   },
   cell3: {
     flex: 5,
     borderColor: "#191970",
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: scale(1),
+    borderRadius: scale(5),
   },
   headingText: {
-    fontSize: 15,
+    fontSize: scale(15),
     fontFamily: "RegularGujarati",
     color: "#ffff",
     alignSelf: "center",
   },
   detailText: {
-    fontSize: 13,
+    fontSize: scale(12),
     fontFamily: "RegularGujarati",
     color: "#191970",
     // alignSelf: "center",
@@ -1898,38 +1894,38 @@ const styles = ScaledSheet.create({
     flexDirection: "row",
     flex: 11,
     borderColor: "#191970",
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: scale(1),
+    borderRadius: scale(5),
   },
   Note: {
-    fontSize: 8,
+    fontSize: scale(8),
     fontFamily: "MediumGujarati",
     color: "#191970",
-    marginLeft: 2,
-    marginBottom: -4,
+    marginLeft: scale(2),
+    marginBottom: scale(-4),
   },
   Note1: {
-    fontSize: 8,
+    fontSize: scale(8),
     fontFamily: "MediumGujarati",
     color: "#191970",
-    marginLeft: 2,
+    marginLeft: scale(2),
   },
   info: {
     // paddingTop:1,
-    fontSize: 13,
+    fontSize: scale(12),
     fontFamily: "BoldGujarati",
     color: "#000",
-    marginLeft: 1,
+    marginLeft: scale(1),
     // marginTop:4,
     // borderColor:'red',
     // borderWidth:1,
-    marginBottom: -3,
+    marginBottom: scale(-1.5),
   },
   qty: {
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 12,
+    fontSize: scale(12),
     textAlignVertical: "center",
     alignContent: "flex-end",
     alignSelf: "center",
@@ -1939,39 +1935,42 @@ const styles = ScaledSheet.create({
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 12,
+    fontSize: scale(12),
     textAlignVertical: "center",
     alignContent: "flex-end",
     // alignSelf: "center",
     textAlign: "right",
-    marginRight: 3,
+    marginRight: scale(3),
   },
   t: {
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: 16,
+    fontSize: scale(16),
+    textAlignVertical: "center",
     alignSelf: "flex-end",
-    marginRight: 2,
+    marginRight: scale(2),
   },
   date: {
-    borderBottomColor: "#191970",
-    borderBottomWidth: 2,
-    flex: 1,
-    color: "#191970",
+    fontSize: scale(12),
     fontFamily: "MediumGujarati",
-    fontSize: 12,
-    textAlignVertical: "center",
-    alignContent: "flex-end",
-    alignSelf: "center",
-    textAlign: "center",
+    color: "#191970",
+    marginBottom: verticalScale(-2),
   },
   copyRights: {
     color: "#19197080",
-    fontSize: 10,
+    fontSize: scale(8),
     alignSelf: "flex-start",
-    flex: 1,
+    // flex: 1,
     fontFamily: "LightGujarati",
     marginLeft: Constants.statusBarHeight * 0.5,
-    marginBottom: -1,
+    // marginBottom: scale(0),
   },
+  copyRightsView:{
+    alignSelf: "flex-start",
+    flex: 1,
+    marginBottom:verticalScale(-15),
+    justifyContent:'center',
+    borderWidth:1,
+    borderColor:'red'
+  }
 });
