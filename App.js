@@ -23,10 +23,9 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { ScaledSheet,scale, verticalScale  } from "react-native-size-matters";
+import { ScaledSheet, scale, verticalScale } from "react-native-size-matters";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
-
 
 Text.defaultProps = {
   ...(Text.defaultProps || {}),
@@ -360,7 +359,7 @@ export default function App() {
 
   const ShowMessage = () => {
     ToastAndroid.show("Image Saved to Gallery!", ToastAndroid.SHORT, {
-      backgroundColor:backgroundColor,
+      backgroundColor: backgroundColor,
     });
   };
 
@@ -407,9 +406,9 @@ export default function App() {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.fontMedium}>બુધાભાઈ પાલડીયા</Text>
-                    <Text style={styles.fontLight}>(ખાખરીયા)</Text>
-                    <Text style={styles.fontRegular}>9427262853</Text>
+                    <Text style={styles.ownerName}>બુધાભાઈ પાલડીયા</Text>
+                    <Text style={styles.ownerNative}>(ખાખરીયા)</Text>
+                    <Text style={styles.ownerNumber}>9427262853</Text>
                   </View>
                   <View
                     style={{
@@ -417,7 +416,7 @@ export default function App() {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.fontMedium}>|| શ્રી ગણેશાય નમઃ ||</Text>
+                    <Text style={styles.ownerName}>|| શ્રી ગણેશાય નમઃ ||</Text>
                   </View>
                   <View
                     style={{
@@ -425,9 +424,9 @@ export default function App() {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.fontMedium}>રિકિન ભંડેરી</Text>
-                    <Text style={styles.fontLight}>(પાલીતાણા)</Text>
-                    <Text style={styles.fontRegular}>8141893368</Text>
+                    <Text style={styles.ownerName}>રિકિન ભંડેરી</Text>
+                    <Text style={styles.ownerNative}>(પાલીતાણા)</Text>
+                    <Text style={styles.ownerNumber}>8141893368</Text>
                   </View>
                 </View>
                 <View style={styles.subView1_2}>
@@ -449,13 +448,21 @@ export default function App() {
                 <View style={styles.subView2_2}>
                   <View style={styles.subSubView2_2_1}>
                     <Text style={styles.shree}>શ્રી.</Text>
-                    <TextInput
-                      style={styles.name}
-                      value={name}
-                      onChangeText={(value) => {
-                        setName(value);
+                    <View
+                      style={{
+                        flex: 1,
+                        justifyContent: "flex-end",
+                        marginTop: verticalScale(1),
                       }}
-                    />
+                    >
+                      <TextInput
+                        style={styles.name}
+                        value={name}
+                        onChangeText={(value) => {
+                          setName(value);
+                        }}
+                      />
+                    </View>
                   </View>
                   <View style={styles.subSubView2_2_2}>
                     <Text style={styles.date}>
@@ -1538,7 +1545,6 @@ export default function App() {
                     }}
                   />
                 </View>
-
                 <View>
                   <Text style={styles.Note}>
                     1) ગેરેંટી પિરિયડ દરમ્યાન પંપ ખોલ-ફીટીંગ ચાર્જ ગ્રાહકને
@@ -1560,8 +1566,9 @@ export default function App() {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "flex-end",
+              // justifyContent: "flex-end",
               marginVertical: Constants.statusBarHeight * 0.4,
+              alignItems: "center",
             }}
           >
             <View style={styles.copyRightsView}>
@@ -1574,7 +1581,11 @@ export default function App() {
               onPress={reset}
               style={{ marginRight: Constants.statusBarHeight * 0.5 }}
             >
-              <Ionicons name="reload-circle-sharp" size={scale(32)} color="#191970" />
+              <Ionicons
+                name="reload-circle-sharp"
+                size={scale(32)}
+                color="#191970"
+              />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={captureViewAndSave}
@@ -1618,7 +1629,7 @@ const styles = ScaledSheet.create({
     flex: 2,
     borderColor: "#191970",
     borderWidth: scale(1),
-    margin: scale(2),
+    margin: scale(1),
     borderRadius: scale(10),
   },
   mainView2: {
@@ -1654,6 +1665,7 @@ const styles = ScaledSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     paddingHorizontal: scale(5),
+    marginBottom: verticalScale(2),
   },
   subView1_3: {
     flex: 1,
@@ -1662,14 +1674,26 @@ const styles = ScaledSheet.create({
     borderBottomRightRadius: scale(8),
     borderBottomLeftRadius: scale(8),
     backgroundColor: "#191970",
+    paddingVertical: verticalScale(1),
+    marginBottom: verticalScale(-1),
   },
   fontMedium: {
     fontSize: scale(12),
     fontFamily: "MediumGujarati",
     color: "#191970",
   },
+  ownerName: {
+    fontSize: scale(11),
+    fontFamily: "MediumGujarati",
+    color: "#191970",
+  },
   fontRegular: {
     fontSize: scale(12),
+    fontFamily: "RegularGujarati",
+    color: "#191970",
+  },
+  ownerNumber: {
+    fontSize: scale(11),
     fontFamily: "RegularGujarati",
     color: "#191970",
   },
@@ -1695,6 +1719,12 @@ const styles = ScaledSheet.create({
     color: "#191970",
     marginVertical: verticalScale(-5),
   },
+  ownerNative: {
+    fontSize: scale(9),
+    fontFamily: "LightGujarati",
+    color: "#191970",
+    marginVertical: verticalScale(-5),
+  },
   fontAddress: {
     fontSize: scale(10.5), //12
     fontFamily: "LightGujarati",
@@ -1707,6 +1737,7 @@ const styles = ScaledSheet.create({
     padding: scale(2),
     borderBottomEndRadius: scale(10),
     borderBottomLeftRadius: scale(10),
+    flex: 1,
   },
   whiteTitle: {
     fontSize: scale(14),
@@ -1718,25 +1749,29 @@ const styles = ScaledSheet.create({
   subView2_2: {
     flexDirection: "row",
     flex: 1,
-    marginTop: verticalScale(2),
+    alignContent: "center",
+    // backgroundColor: "grey",
   },
   subSubView2_2_1: {
     flexDirection: "row",
     flex: 5,
+    justifyContent: "center",
 
     alignItems: "center",
-    paddingTop: verticalScale(3),
+    // paddingTop: verticalScale(3),
   },
   subSubView2_2_2: {
     flexDirection: "row",
     flex: 2,
     alignItems: "center",
-    paddingTop: verticalScale(3),
+    // paddingTop: verticalScale(3),
   },
   shree: {
     fontSize: scale(12),
     fontFamily: "MediumGujarati",
     color: "#191970",
+    // marginBottom: verticalScale(3),
+    // backgroundColor:'red'
   },
   name: {
     borderBottomColor: "#191970",
@@ -1746,21 +1781,20 @@ const styles = ScaledSheet.create({
     fontFamily: "MediumGujarati",
     fontSize: scale(12),
     marginHorizontal: scale(3),
-    textAlignVertical: "bottom",
-    marginBottom: verticalScale(0.5),
-    paddingBottom:verticalScale(1.3),
-    alignContent: "flex-end",
+    // textAlignVertical: "center",
+    marginBottom: verticalScale(-1),
+    // borderWidth: 1,
+    // borderColor: "red",
   },
   suchna: {
     borderBottomColor: "#191970",
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: scale(8),
+    fontSize: scale(7),
     marginRight: scale(3),
     marginLeft: scale(3),
-    textAlignVertical: "bottom",
-    marginBottom: verticalScale(0),
+    textAlignVertical: "center",
     alignContent: "flex-end",
     paddingVertical: 0,
   },
@@ -1879,13 +1913,14 @@ const styles = ScaledSheet.create({
     alignSelf: "center",
   },
   detailText: {
-    fontSize: scale(12),
+    fontSize: scale(11),
+
     fontFamily: "RegularGujarati",
     color: "#191970",
     // alignSelf: "center",
   },
   detailText1: {
-    fontSize: 12,
+    fontSize: scale(11),
     fontFamily: "RegularGujarati",
     color: "#191970",
     // alignSelf: "center",
@@ -1898,34 +1933,36 @@ const styles = ScaledSheet.create({
     borderRadius: scale(5),
   },
   Note: {
-    fontSize: scale(8),
+    fontSize: scale(7),
     fontFamily: "MediumGujarati",
     color: "#191970",
     marginLeft: scale(2),
     marginBottom: scale(-4),
   },
   Note1: {
-    fontSize: scale(8),
+    fontSize: scale(7),
     fontFamily: "MediumGujarati",
     color: "#191970",
     marginLeft: scale(2),
   },
   info: {
     // paddingTop:1,
-    fontSize: scale(12),
+    fontSize: scale(11),
+
     fontFamily: "BoldGujarati",
     color: "#000",
     marginLeft: scale(1),
     // marginTop:4,
     // borderColor:'red',
     // borderWidth:1,
-    marginBottom: scale(-1.5),
+    marginBottom: verticalScale(-3),
+    textAlignVertical: "center",
   },
   qty: {
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: scale(12),
+    fontSize: scale(11),
     textAlignVertical: "center",
     alignContent: "flex-end",
     alignSelf: "center",
@@ -1935,7 +1972,7 @@ const styles = ScaledSheet.create({
     flex: 1,
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: scale(12),
+    fontSize: scale(11),
     textAlignVertical: "center",
     alignContent: "flex-end",
     // alignSelf: "center",
@@ -1945,7 +1982,7 @@ const styles = ScaledSheet.create({
   t: {
     color: "#191970",
     fontFamily: "MediumGujarati",
-    fontSize: scale(16),
+    fontSize: scale(14),
     textAlignVertical: "center",
     alignSelf: "flex-end",
     marginRight: scale(2),
@@ -1954,23 +1991,21 @@ const styles = ScaledSheet.create({
     fontSize: scale(12),
     fontFamily: "MediumGujarati",
     color: "#191970",
-    marginBottom: verticalScale(-2),
+    marginBottom: verticalScale(1.5),
   },
   copyRights: {
     color: "#19197080",
-    fontSize: scale(8),
+    fontSize: scale(7),
     alignSelf: "flex-start",
     // flex: 1,
     fontFamily: "LightGujarati",
     marginLeft: Constants.statusBarHeight * 0.5,
     // marginBottom: scale(0),
   },
-  copyRightsView:{
-    alignSelf: "flex-start",
+  copyRightsView: {
+    alignSelf: "center",
     flex: 1,
-    marginBottom:verticalScale(-15),
-    justifyContent:'center',
-    borderWidth:1,
-    borderColor:'red'
-  }
+    // marginBottom: verticalScale(-15),
+    justifyContent: "center",
+  },
 });
